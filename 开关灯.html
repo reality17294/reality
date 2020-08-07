@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>开关灯</button>
+    <script>
+        var btn = document.querySelector('button');
+        var bd = document.querySelector('body');
+        var flag = 0;
+
+        btn.onclick = function () {
+            if (flag == 0) {
+                bd.style.backgroundColor = 'black';
+                flag = 1;
+
+            } else {
+
+                bd.style.backgroundColor = 'white';
+                flag = 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

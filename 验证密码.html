@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            margin: 200px auto;
+        }
+
+        .ipt {
+            width: 200px;
+
+        }
+
+        .hint {
+            display: inline-block;
+            background: url(images/mess.png) no-repeat left center;
+            padding-left: 20px;
+            font-size: 12px;
+
+        }
+
+        .wrong {
+            background-image: url(images/wrong.png);
+            color: red;
+        }
+
+        .right {
+            background-image: url(images/right.png);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" name="" id="" class="ipt">
+        <p class="hint">请输入</p>
+    </div>
+    <script>
+        var ipt = document.querySelector('.ipt');
+        var message = document.querySelector('.hint');
+        ipt.onblur = function () {
+            if (this.value.length < 6 || this.value.length > 16) {
+                message.className = 'hint wrong';
+                message.innerHTML = '你输错了';
+            } else {
+                message.className = 'hint right';
+                message.innerHTML = '你输对了';
+            }
+        }
+    </script>
+</body>
+
+</html>
