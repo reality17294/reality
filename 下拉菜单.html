@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+
+        .nav {
+            width: 500px;
+
+            margin: 200px auto;
+
+        }
+
+        .nav .navs {
+            position: relative;
+            float: left;
+        }
+
+        .nav ul li a {
+            padding: 0 40px;
+        }
+
+        .nav .menu {
+            display: none;
+            position: absolute;
+            width: 116px;
+            left: 0;
+            bottom: -160px;
+            text-align: center;
+
+
+        }
+
+        .nav .menu li {
+            margin: 2px 0;
+            padding: 15px;
+            border: 1px solid rgb(255, 214, 148);
+            border-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="f">
+            <li class="navs">
+                <a href="#">微博</a>
+                <ul class="menu">
+                    <li>私信</li>
+                    <li>关注</li>
+                    <li>加我</li>
+                </ul>
+            </li>
+            <li class="navs">
+                <a href="#">微博</a>
+                <ul class="menu">
+                    <li>私信</li>
+                    <li>关注</li>
+                    <li>加我</li>
+                </ul>
+            </li>
+            <li class="navs">
+                <a href="#">微博</a>
+                <ul class="menu">
+                    <li>私信</li>
+                    <li>关注</li>
+                    <li>加我</li>
+                </ul>
+            </li>
+            <li class="navs">
+                <a href="#">微博</a>
+                <ul class="menu">
+                    <li>私信</li>
+                    <li>关注</li>
+                    <li>加我</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var nav = document.querySelector('.f');
+
+        var navs = nav.children;
+        for (var i = 0; i < navs.length; i++) {
+            navs[i].onmouseover = function () {
+                this.children[1].style.display = 'block';
+            }
+        }
+        for (var i = 0; i < navs.length; i++) {
+            navs[i].onmouseout = function () {
+                this.children[1].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
