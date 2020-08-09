@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        thead {
+            background-color: rgb(208, 202, 209);
+        }
+
+        thead tr td {
+            padding: 15px 20px;
+            border: 1px solid black;
+        }
+
+        tbody tr td {
+            padding: 10px 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>名字</td>
+                <td>科目</td>
+                <td>成绩</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var tbody = document.querySelector('tbody');
+        var datas = [{
+            name: '大司马',
+            subject: '超神',
+            score: 0
+        }, {
+            name: '大司马',
+            subject: '起飞',
+            score: 100
+        }, {
+            name: '大司马',
+            subject: '吸血',
+            score: 100
+        }, {
+            name: '大司马',
+            subject: '折磨',
+            score: 100
+        }]
+        for (var i = 0; i < datas.length; i++) {
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for (var k in datas[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = datas[i][k];
+                tr.appendChild(td);
+
+            }
+            var td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(td);
+
+        }
+        // 这一个删除操作为什么不能写在上面的循环里呢  因为重复注册事件了吗?
+        var as = document.querySelectorAll('a');
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>
