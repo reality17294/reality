@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 173px;
+            height: 51px;
+
+            margin: 150px auto;
+        }
+
+        .input {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+        }
+
+        .con {
+            display: none;
+            position: relative;
+            top: -10px;
+            left: 0;
+            width: 173px;
+            height: 30px;
+            margin-bottom: 15px;
+            background-color: #ccc;
+        }
+
+
+        /* 最初三角是用一个span做的，但好像无法继承父类con的display属性变化，换成了伪元素就可以了，为何呢？ */
+        .con::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 15px;
+
+            height: 15px;
+            border: 8px solid transparent;
+            border-top-color: #ccc;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="con"></div>
+
+
+        <input type="text" class="input" placeholder="请输入单号">
+    </div>
+    <script>
+        var ipt = document.querySelector('.input');
+        var con = document.querySelector('.con');
+        ipt.addEventListener('keyup', function () {
+
+            if (this.value === '') {
+                con.style.display = 'none';
+            } else {
+                con.innerHTML = this.value;
+                con.style.display = 'block';
+
+            }
+
+
+        })
+        ipt.addEventListener('blur', function () {
+            this.value = '';
+            con.style.display = 'none';
+
+        })
+    </script>
+</body>
+
+</html>
