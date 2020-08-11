@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text">
+        <button>点击发送验证码</button></div>
+    <script>
+        var ipt = document.querySelector('input');
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            btn.disabled = true;
+            var time = 10;
+            var timer = setInterval(function () {
+                if (time >= 0) {
+                    btn.innerHTML = time + 's后重发';
+                    time--;
+                } else {
+                    clearInterval(timer)
+                    btn.disabled = false; // 此处false不用引号！！！！
+                    btn.innerHTML = '点击发送验证码';
+
+                }
+
+            }, 1000)
+
+        })
+    </script>
+</body>
+
+</html>
