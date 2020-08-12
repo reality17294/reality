@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sidebar {
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 40px;
+            height: 50px;
+            background-color: purple;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+
+        }
+
+
+
+        .feedback {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            width: 200px;
+            background-color: purple;
+            z-index: -1;
+
+        }
+    </style>
+    <script src="animate.js"></script>
+    <!-- 回去看animate.js有些注意事项 -->
+</head>
+
+<body>
+    <div class="sidebar">
+        <span>></span>
+        <div class="feedback">问题反馈</div>
+    </div>
+
+
+
+
+
+    <script>
+        var sidebar = document.querySelector('.sidebar');
+        var feedback = document.querySelector('.feedback');
+        sidebar.addEventListener('mouseenter', function () {
+            animate(feedback, -160, function () {
+                sidebar.children[0].innerHTML = '->';
+            });
+        })
+        sidebar.addEventListener('mouseleave', function () {
+            animate(feedback, 0, function () {
+                sidebar.children[0].innerHTML = '>';
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: none;
+            position: absolute;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            z-index: 999;
+            background-color: pink;
+
+        }
+
+        span {
+            position: absolute;
+            left: 0;
+            display: block;
+            width: 300px;
+            height: 300px;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <button>go</button>
+    <div></div>
+    <span></span>
+    <script>
+        var div = document.querySelector('div');
+        var btn = document.querySelector('button');
+        var span = document.querySelector('span');
+
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer)
+            obj.timer = setInterval(function () {
+                var step = (target - obj.offsetLeft) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (obj.offsetLeft < target) {
+                    obj.style.left = obj.offsetLeft + step + 'px';
+
+                } else {
+                    clearInterval(obj.timer);
+                    callback();
+                }
+            }, 50)
+        }
+        animate(div, 100);
+        btn.addEventListener('click', function () {
+            animate(span, 500, function () {
+                span.innerHTML = 'finished';
+            });
+        })
+    </script>
+</body>
+
+</html>
