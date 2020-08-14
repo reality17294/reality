@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .nav {
+            position: relative;
+            width: 600px;
+            height: 40px;
+
+            margin: 150px auto;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+        .nav li {
+            float: left;
+            padding: 0 20px;
+            cursor: pointer;
+
+        }
+
+        .nav img {
+            float: right;
+            height: 100%;
+        }
+
+        .nav span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>首页</li>
+            <li>企业</li>
+            <li>电话</li>
+            <li>关于我们</li>
+            <li>阶段</li>
+        </ul>
+        <img src="images/rss.png" alt="">
+        <span><img src="images/cloud.gif" alt=""></span>
+    </div>
+
+
+    <script>
+        var cloud = document.querySelector('span');
+        arr = document.querySelectorAll('li');
+        var current = 0;
+        for (var i = 0; i < arr.length; i++) {
+            arr[i].addEventListener('mouseenter', function () {
+                animate(cloud, this.offsetLeft);
+                // 这里this不能换成arr[i],i为上一级的变量
+
+                this.style.color = 'white';
+            });
+            arr[i].addEventListener('mouseleave', function () {
+                console.log(cloud.offsetLeft);
+                animate(cloud, current);
+                for (var i = 0; i < arr.length; i++) {
+                    this.style.color = '';
+                }
+
+            });
+            arr[i].addEventListener('click', function () {
+                current = this.offsetLeft;
+
+            })
+
+        }
+
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer)
+            obj.timer = setInterval(function () {
+                var step = (target - obj.offsetLeft) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                // if (obj.offsetLeft < target) {
+                //     obj.style.left = obj.offsetLeft + step + 'px';
+
+                // } else {
+                //     clearInterval(obj.timer);
+                //     callback();
+                // }
+                // 下面这种写法更适用于大多数场景。上面的方法obj.offsetLeft容易出问题
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer);
+                    callback && callback();
+
+
+                } else {
+                    obj.style.left = obj.offsetLeft + step + 'px';
+                }
+            }, 15)
+        }
+    </script>
+</body>
+
+</html>
