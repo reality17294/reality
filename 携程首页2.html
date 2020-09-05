@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>携程首页</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/index2.css">
+        <script>
+                window.onload = function () {
+                        var banner = document.querySelector('.banner');
+                        var ol = document.querySelector('ol');
+                        var ul = banner.children[0];
+                        var index = 0;
+                        var w = banner.offsetWidth;
+                        var startX = 0;
+                        var move = 0;
+                        var flag = false;
+                        var timer = setInterval(function () {
+                                index++;
+                                var movex = -index * w;
+                                ul.style.transition = 'all .3s';
+                                ul.style.transform = 'translateX(' + movex + 'px)';
+
+                        }, 3000);
+                        ul.addEventListener('transitionend', function () {
+                                if (index > 2) {
+                                        index = 0;
+                                        ul.style.transition = 'none';
+                                        ul.style.transform = 'translateX(0)';
+                                } else if (index < 0) {
+                                        index = 2;
+                                        ul.style.transition = 'none';
+                                        var move = -index * w;
+                                        ul.style.transform = 'translateX(' + move + 'px)';
+                                }
+                                ol.querySelector('.current').classList.remove('current');
+                                ol.children[index].classList.add('current');
+
+                        })
+                        ul.addEventListener('touchstart', function (e) {
+                                startX = e.targetTouches[0].pageX;
+                                clearInterval(timer);
+                        });
+                        ul.addEventListener('touchmove', function (e) {
+                                flag = true;
+                                move = e.targetTouches[0].pageX - startX
+                                var movex = move + (-index * w);
+                                ul.style.transition = 'none';
+                                ul.style.transform = 'translateX(' + movex + 'px)';
+                                e.preventDefault;
+
+                        })
+                        ul.addEventListener('touchend', function () {
+                                if (flag) {
+                                        if (Math.abs(move) > 50) {
+                                                if (move > 0) {
+                                                        index--;
+                                                } else {
+                                                        index++;
+                                                }
+                                                var movex = -index * w;
+                                                ul.style.transition = 'all .3s';
+                                                ul.style.transform = 'translateX(' + movex +
+                                                        'px)';
+                                        } else {
+                                                var movex = -index * w;
+                                                ul.style.transition = 'all .3s';
+                                                ul.style.transform = 'translateX(' + movex +
+                                                        'px)';
+                                        }
+                                }
+
+                                timer = setInterval(function () {
+                                        index++;
+                                        var movex = -index * w;
+                                        ul.style.transition = 'all .3s';
+                                        ul.style.transform = 'translateX(' +
+                                                movex + 'px)';
+
+                                }, 3000);
+                        })
+                        var goback = document.querySelector('.goback');
+                        var nav = document.querySelector('.main_nav');
+                        window.addEventListener('scroll', function () {
+                                if (window.pageYOffset > nav.offsetTop) {
+                                        goback.style.display = 'block';
+                                } else {
+                                        goback.style.display = 'none';
+
+                                }
+                        });
+                        goback.addEventListener('click', function () {
+                                window.scroll(0, 0);
+                        })
+                }
+        </script>
+</head>
+
+<body>
+        <div class="header">
+                <div class="search">请输入</div>
+                <div class="user"> <a href="javascript:;">我 的</a></div>
+
+        </div>
+        <div class="banner">
+                <ul class="banner_ul">
+                        <li> <img src="upload/focus3.jpg" alt=""></li>
+                        <li> <img src="upload/focus.jpg" alt=""></li>
+                        <li> <img src="upload/focus2.jpg" alt=""></li>
+                        <li> <img src="upload/focus3.jpg" alt=""></li>
+                        <li> <img src="upload/focus.jpg" alt=""></li>
+
+                </ul>
+                <ol>
+                        <li class="current"></li>
+                        <li></li>
+                        <li></li>
+                </ol>
+        </div>
+        <div class="local_nav">
+                <ul>
+                        <li><a href="javascript:;">
+                                        <span class="local_nav_icon1"></span>
+                                        <span> 门票玩乐</span></a></li>
+                        <li><a href="javascript:;">
+                                        <span class="local_nav_icon2"></span>
+                                        <span> 美食林</span></a></li>
+                        <li><a href="javascript:;">
+                                        <span class="local_nav_icon3"></span>
+                                        <span> 攻略·景点</span></a></li>
+                        <li><a href="javascript:;">
+                                        <span class="local_nav_icon4"></span>
+                                        <span> 周边游</span></a></li>
+                        <li><a href="javascript:;">
+                                        <span class="local_nav_icon5"></span>
+                                        <span> 一日游</span></a></li>
+                </ul>
+        </div>
+
+        <div class="main_nav">
+                <div class="nav1">
+                        <div class="nav_items"><a href="#">酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                </div>
+                <div class="nav2">
+                        <div class="nav_items"><a href="#">酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                </div>
+                <div class="nav3">
+                        <div class="nav_items"><a href="#">酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                        <div class="nav_items"><a href="#">海外酒店</a><a href="#">特价酒店</a></div>
+                </div>
+        </div>
+
+        <ul class="subnav">
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+                <li><a href="#"> <span class="subnav_icon1"></span>
+                                <span>WIFI</span></a></li>
+        </ul>
+        <div class="ad">
+                <div class="hd">
+                        <span></span>
+                        <a href="#">获取更多福利 <i></i></a>
+                </div>
+                <div class="bd">
+                        <div class="goback"><img src="images/close.png" alt=""></div>
+                        <div class="bd_row">
+                                <a href="#"><img src="upload/pic1.jpg" alt=""></a>
+                                <a href="#"><img src="upload/pic2.jpg" alt=""></a></div>
+                        <div class="bd_row">
+                                <a href="#"><img src="upload/pic3.jpg" alt=""></a>
+                                <a href="#"><img src="upload/pic4.jpg" alt=""></a></div>
+                        <div class="bd_row">
+                                <a href="#"><img src="upload/pic5.jpg" alt=""></a>
+                                <a href="#"><img src="upload/pic6.jpg" alt=""></a></div>
+
+
+                </div>
+
+        </div>
+        </div>
+
+</body>
+
+</html>
